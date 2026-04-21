@@ -159,7 +159,7 @@
 }
 
 .visual-card {
-  width: 380px;
+  width: 480px;
   height: auto;
   min-height: 350px;
   background: var(--surface-color);
@@ -220,6 +220,20 @@
 .function { color: #dcdcaa; } /* Light yellow */
 .annotation { color: #dcdcaa; } /* Light yellow */
 .string { color: #ce9178; } /* Orange */
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background-color: #d4d4d4;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
 
 @media (max-width: 992px) {
   .hero-container {

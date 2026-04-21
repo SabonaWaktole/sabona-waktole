@@ -1,7 +1,42 @@
-
+import { useState, type FormEvent } from 'react';
 import './Contact.css';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    
+    // Safety check to ensure form isn't empty
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setStatus('sending');
+
+    try {
+      const response = await fetch(import.meta.env.VITE_FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setFormData({ name: '', email: '', message: '' });
+        setStatus('sent');
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        setStatus('idle');
+        alert("Oops! There was a problem submitting your form.");
+      }
+    } catch (error) {
+      setStatus('idle');
+      alert("Oops! There was a problem submitting your form.");
+    }
+  };
+
   return (
     <section className="contact" id="contact">
       <div className="container">
@@ -25,20 +60,47 @@ const Contact = () => {
             </div>
           </div>
           <div className="contact-form-container">
-            <form className="contact-form">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" placeholder="John Doe" />
+                <input 
+                  type="text" 
+                  id="name" 
+                  value={formData.name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder="John Doe" 
+                  required
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="john@example.com" />
+                <input 
+                  type="email" 
+                  id="email" 
+                  value={formData.email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  placeholder="john@example.com" 
+                  required
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea id="message" rows={4} placeholder="Tell me about your project..."></textarea>
+                <textarea 
+                  id="message" 
+                  rows={4} 
+                  value={formData.message}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  placeholder="Tell me about your project..."
+                  required
+                ></textarea>
               </div>
-              <button type="button" className="btn btn-primary submit-btn">Send Message</button>
+              <button 
+                type="submit" 
+                className="btn btn-primary submit-btn"
+                disabled={status === 'sending'}
+              >
+                {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Message Sent!' : 'Send Message'}
+              </button>
             </form>
           </div>
         </div>
