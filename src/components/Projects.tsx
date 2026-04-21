@@ -7,7 +7,7 @@ const projects = [
     title: 'Stock Pulse Predictor',
     category: 'Fintech Analytics',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
-    description: 'A predictive dashboard analyzing financial markets and forecasting stock trends.',
+    description: 'A predictive dashboard analyzing financial markets and forecasting stock market trends.',
     link: 'https://github.com/SabonaWaktole/stock-pulse-predictor'
   },
   {
