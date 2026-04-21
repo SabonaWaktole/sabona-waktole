@@ -71,18 +71,27 @@
 .cta-btn {
   background: rgba(59, 130, 246, 0.1);
   color: var(--accent-primary);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
   padding: 0.6rem 1.5rem;
-  border-radius: 30px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+}
+
+@keyframes primary-pulse {
+  0% { box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3), 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3), 0 0 0 12px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3), 0 0 0 0 rgba(59, 130, 246, 0); }
 }
 
 .cta-btn:hover {
   background: var(--accent-primary);
   color: #fff;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  animation: primary-pulse 1.5s infinite;
 }
 
 @media (max-width: 768px) {

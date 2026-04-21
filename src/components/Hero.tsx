@@ -29,10 +29,23 @@ const Hero = () => {
                 <span className="mac-dot bg-yellow"></span>
                 <span className="mac-dot bg-green"></span>
              </div>
-             <div className="card-body">
-               <div className="skeleton-line full"></div>
-               <div className="skeleton-line half"></div>
-               <div className="skeleton-line full mt-4"></div>
+             <div className="card-body code-block">
+               <pre><code>
+<span className="keyword">class</span> <span className="class-name">Life</span> {"{\n"}
+{"  "}<span className="keyword">static void</span> <span className="function">live</span>() {"{\n"}
+{"    "}<span className="control-keyword">try</span> {"{\n"}
+{"      "}<span className="function">code</span>();{"\n"}
+{"      "}<span className="function">sleep</span>();{"\n"}
+{"    } "}<span className="control-keyword">catch</span> (<span className="class-name">Exception</span> e) {"{\n"}
+{"      "}<span className="function">fix</span>(e);{"\n"}
+{"    }\n"}
+{"    "}<span className="function">live</span>();{"\n"}
+{"  }\n"}
+{"  "}<span className="keyword">static void</span> <span className="function">code</span>() <span className="keyword">throws</span> <span className="class-name">Exception</span> {"{ "}<span className="control-keyword">throw new</span> <span className="class-name">Exception</span>(); {"}\n"}
+{"  "}<span className="keyword">static void</span> <span className="function">sleep</span>() {"{}\n"}
+{"  "}<span className="keyword">static void</span> <span className="function">fix</span>(<span className="class-name">Exception</span> e) {"{}\n"}
+{"}"}
+               </code></pre>
              </div>
           </div>
         </div>
